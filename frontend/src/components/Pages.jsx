@@ -407,9 +407,10 @@ export function GeneratePage({ staff, classes, subjects, rooms, setResult, setHi
   const run = async () => {
     setRunning(true); setProgress(10);
     setLogs(["[INIT] Connecting to AI Engine (Backend)..."]);
+    const API_URL = import.meta.env.VITE_API_URL || "";
     try {
       setProgress(30);
-      const res = await fetch("/api/generate", {
+      const res = await fetch(`${API_URL}/api/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ teachers: staff, classes, subjects, rooms, algorithm: algo }),
