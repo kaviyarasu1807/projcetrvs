@@ -85,7 +85,7 @@ export function LoginPage({ onLogin }) {
           )}
 
           <button style={btn(C.indigo,"#fff",{ padding:"12px 20px", fontSize:14, width:"100%",
-            boxShadow:"0 2px 8px rgba(67,56,202,.25)", opacity:loading?.7:1 })}
+            boxShadow:"0 2px 8px rgba(67,56,202,.25)", opacity:loading ? 0.7 : 1 })}
             onClick={submit} disabled={loading}>
             {loading ? "Please wait…" : mode==="signup" ? "Create Account" : "Sign In →"}
           </button>
