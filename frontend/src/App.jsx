@@ -100,10 +100,18 @@ export default function App() {
         {page === "generate" && (
           <GeneratePage 
             staff={staff} classes={classes} subjects={subjects} rooms={rooms} 
+            days={days} slots={slots}
             setResult={setResult} setHistory={setHistory} setPage={setPage} show={showToast}
           />
         )}
-        {page === "timetable" && <TimetablePage result={result} setResult={setResult} classes={classes} staff={staff} show={showToast} />}
+        {page === "timetable" && (
+          <TimetablePage 
+            result={result} setResult={setResult} 
+            classes={classes} staff={staff} 
+            days={days} slots={slots}
+            show={showToast} 
+          />
+        )}
       </main>
     </div>
   );

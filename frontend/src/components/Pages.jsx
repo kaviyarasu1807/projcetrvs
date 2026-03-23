@@ -395,7 +395,7 @@ export function ConfigPage() {
 }
 
 // ── GENERATE PAGE ─────────────────────────────────────────────
-export function GeneratePage({ staff, classes, subjects, rooms, setResult, setHistory, setPage, show }) {
+export function GeneratePage({ staff, classes, subjects, rooms, days, slots, setResult, setHistory, setPage, show }) {
   const [algo, setAlgo] = useState("csp");
   const [running, setRunning] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -413,7 +413,7 @@ export function GeneratePage({ staff, classes, subjects, rooms, setResult, setHi
       const res = await fetch(`${API_URL}/api/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teachers: staff, classes, subjects, rooms, algorithm: algo }),
+        body: JSON.stringify({ teachers: staff, classes, subjects, rooms, days, slots, algorithm: algo }),
       });
       setProgress(80);
       const data = await res.json();
@@ -477,7 +477,7 @@ export function GeneratePage({ staff, classes, subjects, rooms, setResult, setHi
 }
 
 // ── TIMETABLE PAGE ────────────────────────────────────────────
-export function TimetablePage({ result, setResult, staff, classes, show }) {
+export function TimetablePage({ result, setResult, staff, classes, days, slots, show }) {
   const [view, setView] = useState("class");
   const [selClass, setSelClass] = useState(classes[0]?.id || "");
   const [selTeacher, setSelTeacher] = useState(staff[0]?.id || "");
@@ -485,8 +485,7 @@ export function TimetablePage({ result, setResult, staff, classes, show }) {
   const [over, setOver] = useState(null);
   const [exporting, setExporting] = useState(false);
 
-  const days = DEFAULT_DAYS;
-  const slots = DEFAULT_SLOTS;
+  // Removed local DEFAULT_DAYS/SLOTS constants to use props
 
   if (!result) return <div style={card()}>No result. Go to Generate.</div>;
 

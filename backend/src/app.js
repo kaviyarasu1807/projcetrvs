@@ -21,8 +21,8 @@ app.post("/api/generate", (req, res) => {
     }
 
     let result;
-    const days = DEFAULT_DAYS;
-    const slots = DEFAULT_SLOTS;
+    const days = req.body.days || DEFAULT_DAYS;
+    const slots = req.body.slots || DEFAULT_SLOTS;
 
     if (algorithm === "ga") {
       result = runGA(teachers, classes, subjects, days, slots, params || {}, (m) => console.log(m));
